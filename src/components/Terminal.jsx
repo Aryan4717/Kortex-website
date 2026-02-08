@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-const Terminal = () => {
+const Terminal = ({ model = 'openai' }) => {
   const [isDistilling, setIsDistilling] = useState(false)
   const [tokenSavings, setTokenSavings] = useState(0)
   const [showDistilled, setShowDistilled] = useState(false)
@@ -29,15 +29,47 @@ const Terminal = () => {
     'Address: 123 Main St, Anytown, ST 12345',
   ]
 
-  const distilledContext = {
-    user: {
-      id: 12345,
-      name: "John Doe",
-      action: "login"
-    },
-    timestamp: "2024-01-15T10:23:45Z",
-    status: "success"
+  const getDistilledContext = () => {
+    const baseContext = {
+      user: {
+        id: 12345,
+        name: "John Doe",
+        action: "login"
+      },
+      timestamp: "2024-01-15T10:23:45Z",
+      status: "success"
+    }
+
+    // Model-specific syntax examples
+    const modelSyntax = {
+      openai: {
+        model: "gpt-4",
+        messages: [
+          { role: "system", content: "You are a helpful assistant." },
+          { role: "user", content: "Process this context" }
+        ],
+        ...baseContext
+      },
+      anthropic: {
+        model: "claude-3-opus",
+        messages: [
+          { role: "user", content: "Process this context" }
+        ],
+        system: "You are a helpful assistant.",
+        ...baseContext
+      },
+      llama: {
+        model: "llama-3-70b",
+        prompt: "Process this context",
+        system_prompt: "You are a helpful assistant.",
+        ...baseContext
+      }
+    }
+
+    return modelSyntax[model] || modelSyntax.openai
   }
+
+  const distilledContext = getDistilledContext()
 
   const handleDistill = () => {
     setIsDistilling(true)
