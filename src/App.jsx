@@ -1,4 +1,5 @@
 import React from 'react'
+import Terminal from './components/Terminal'
 
 function App() {
   return (
@@ -15,13 +16,16 @@ function App() {
       </nav>
 
       {/* Hero Section */}
-      <main className="relative z-10 flex flex-col items-center justify-center min-h-[calc(100vh-80px)] px-4 text-center">
+      <main className="relative z-10 flex flex-col items-center justify-center px-4 text-center pt-12 pb-8">
         <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
           The World's First Context Runtime.
         </h1>
-        <p className="text-xl md:text-2xl text-gray-300 max-w-3xl leading-relaxed">
+        <p className="text-xl md:text-2xl text-gray-300 max-w-3xl leading-relaxed mb-12">
           Stop sending raw data. Start sending Intelligence. Distill 100k tokens into the Golden Prompt.
         </p>
+        
+        {/* Terminal Component */}
+        <Terminal />
       </main>
     </div>
   )
