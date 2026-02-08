@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Terminal from './components/Terminal'
+import BentoGrid from './components/BentoGrid'
 
 function App() {
+  const [currentModel, setCurrentModel] = useState('openai')
+
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
       {/* Radial gradient glow effect */}
@@ -25,7 +28,10 @@ function App() {
         </p>
         
         {/* Terminal Component */}
-        <Terminal />
+        <Terminal model={currentModel} />
+        
+        {/* Bento Grid */}
+        <BentoGrid onModelChange={setCurrentModel} currentModel={currentModel} />
       </main>
     </div>
   )
