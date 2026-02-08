@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import Terminal from './components/Terminal'
 import BentoGrid from './components/BentoGrid'
+import DXSection from './components/DXSection'
+import Footer from './components/Footer'
 
 function App() {
   const [currentModel, setCurrentModel] = useState('openai')
@@ -11,9 +13,9 @@ function App() {
       <div className="absolute inset-0 bg-gradient-radial from-cyan-500/20 via-cyan-500/5 to-transparent pointer-events-none"></div>
       
       {/* Navigation Bar */}
-      <nav className="relative z-10 flex items-center justify-between px-8 py-6">
-        <div className="text-2xl font-bold tracking-tight">Kortex</div>
-        <button className="px-6 py-2 bg-cyan-500 text-black font-semibold rounded-md hover:bg-cyan-400 transition-colors">
+      <nav className="relative z-10 flex items-center justify-between px-4 md:px-8 py-4 md:py-6">
+        <div className="text-xl md:text-2xl font-bold tracking-tight">Kortex</div>
+        <button className="px-4 md:px-6 py-2 bg-cyan-500 text-black font-semibold rounded-md hover:bg-cyan-400 transition-colors text-sm md:text-base">
           Waitlist
         </button>
       </nav>
@@ -32,7 +34,13 @@ function App() {
         
         {/* Bento Grid */}
         <BentoGrid onModelChange={setCurrentModel} currentModel={currentModel} />
+        
+        {/* Developer Experience Section */}
+        <DXSection />
       </main>
+      
+      {/* Footer */}
+      <Footer />
     </div>
   )
 }
